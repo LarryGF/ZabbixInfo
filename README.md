@@ -5,9 +5,10 @@ We created this script because we needed to process the data that Zabbix obtaine
 
 So far it queries the Zabbix database in order to search for a specific host, then it lets you select which item's data you wanna view.
 
-It lets you export the data of the selected item into a .csv file (optional) and gives you the mean of the maximum, minimum and average values that Zabbix has stored on its' database. 
+It lets you export the data of the selected item into a .csv file (optional) and gives you the mean of the maximum, minimum and average values that Zabbix has stored on its' database. It also gives you the 95 percentile of those same values.
 
 Since this is the very first version of the script you need to manually replace in your readingdb.py your database's username anda password, the default username:password is root:1234. We're planning on doing this in a smarter way soon :)
+
 #Installation
 
 It depends on:
