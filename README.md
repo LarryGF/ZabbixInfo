@@ -16,3 +16,7 @@ It depends on:
 -Click
 
 I hope this results useful to some of you, further development in process :)
+
+#To use it:
+
+python zabbixinfo.py "name of the host for which you wanna search the values"
