@@ -8,6 +8,7 @@ So far it queries the Zabbix database in order to search for a specific host, th
 It lets you export the data of the selected item into a .csv file (optional) and gives you the mean of the maximum, minimum and average values that Zabbix has stored on its' database. 
 
 #Installation
+
 It depends on:
 
 -Python3
