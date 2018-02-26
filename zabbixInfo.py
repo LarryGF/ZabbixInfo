@@ -2,6 +2,7 @@
 import click
 from readingdb import get_items, get_trends, search_host, percentil, rank, mean
 
+
 @click.command()
 @click.argument('name')
 def hosts(name):
@@ -12,7 +13,7 @@ def hosts(name):
     click.echo('Hostid\tHostname')
     for host in host_list:
         print('{}\t{}'.format(*host))
-    while not select.isnumeric() or  int(select) not in hosts_ids:
+    while not select.isnumeric() or int(select) not in hosts_ids:
         select = click.prompt('\nSelect a hostid')
 
         if not select.isnumeric() or int(select) not in hosts_ids:
@@ -27,14 +28,13 @@ def hosts(name):
         click.echo('{}\t{}\t{}'.format(*item))
     select = ''
     items_ids = [e[1] for e in items_list]
-    while not select.isnumeric() or  int(select) not in items_ids:
+    while not select.isnumeric() or int(select) not in items_ids:
         select = click.prompt('\nSelect an itemid')
 
         if not select.isnumeric() or int(select) not in items_ids:
             click.echo('\nPlease use a number from the list')
-            print(items_ids)  
+            print(items_ids)
 
-    
     item = [e for e in items_list if e[1] == int(select)].pop()
     select = int(select)
     click.echo('You have selected the item: {}'.format(item[2]))
@@ -56,8 +56,8 @@ def hosts(name):
         while file == '':
             file = click.prompt('Name the file')
             try:
-                fd = open(file,'w')
-            
+                fd = open(file, 'w')
+
             except Exception as e:
                 click.echo('Error opening the file')
                 print(e)
@@ -70,14 +70,13 @@ def hosts(name):
         for trend in trends:
             click.echo('{};{};{};{}'.format(*trend), file=fd)
 
-	
-    numbers_max =  [e[3] for e in trends]
+    numbers_max = [e[3] for e in trends]
     num_max = mean(numbers_max)
-    
-    numbers_avg =  [e[2] for e in trends]
-    num_avg= mean(numbers_avg)
 
-    numbers_min =  [e[1] for e in trends]
+    numbers_avg = [e[2] for e in trends]
+    num_avg = mean(numbers_avg)
+
+    numbers_min = [e[1] for e in trends]
     num_min = mean(numbers_min)
 
     score_max = [e[3] for e in trends]
@@ -102,7 +101,6 @@ def hosts(name):
     print('\nAverage min', num_min)
     print('\n95 percentile min', ans_min)
     print('\n')
-
 
 
 hosts()

@@ -1,24 +1,29 @@
-# ZabbixInfo
-A python script to search for specific values in Zabbix database.
+ZabbixInfo
+========================
 
-We created this script because we needed to process the data that Zabbix obtained from the hosts in our Network.
+A python script to search for specific values in **Zabbix** database.
 
-So far it queries the Zabbix database in order to search for a specific host, then it lets you select which item's data you wanna view.
+We created this script because we needed to process the data that **Zabbix** obtained from the hosts in our network.
 
-It lets you export the data of the selected item into a .csv file (optional) and gives you the mean of the maximum, minimum and average values that Zabbix has stored on its' database. It also gives you the 95 percentile of those same values.
+So far it queries the **Zabbix** database in order to search for a specific host, then it lets you select which item's data you wanna view.
 
-Since this is the very first version of the script you need to manually replace in your readingdb.py your database's username anda password, the default username:password is root:1234. We're planning on doing this in a smarter way soon :)
+It lets you export the data of the selected item into a **.csv** file (optional) and gives you the mean of the maximum, minimum and average values that **Zabbix** has stored on its' database. 
 
-#Installation
+Since this is the very first version of the script you need to manually replace in your readingdb.py your database's username and password, the default **username**:**password** is **root**:**1234**. We're planning on doing this in a smarter way soon :)
 
-It depends on:
+Installation
+-------------------
 
--Python3
--SQLAlchemy
--Click
+### It depends on:
+
+- Python3
+- SQLAlchemy
+- Click
 
 I hope this results useful to some of you, further development in process :)
 
-#To use it:
+### To use it:
 
+```bash
 python zabbixinfo.py "name of the host for which you wanna search the values"
+```

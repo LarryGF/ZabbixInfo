@@ -55,21 +55,20 @@ def percentil(scores):
     count = 0
     ans = []
     for i, score in enumerate(scores):
-        i+=1
-
-        ans.append(i/len(scores))
+        i += 1
+        ans.append(i / len(scores))
 
     return ans
 
 
 def rank(scores, percentil_rank, value):
-    
 
     for i, e in enumerate(percentil_rank):
         if e >= value:
             return scores[i]
 
+
 def mean(numbers):
-	ans = []     
-	mean = float( sum(numbers)) / max(len(numbers),1)
-	return mean
+    ans = []
+    mean = float(sum(numbers)) / max(len(numbers), 1)
+    return mean
