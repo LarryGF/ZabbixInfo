@@ -22,6 +22,8 @@ Installation
 
 I hope this results useful to some of you, further development in process :)
 
+You can install python dependencies using `pip install -r requirements.txt`
+
 ### To use it:
 
 ```bash
