@@ -9,7 +9,9 @@ So far it queries the **Zabbix** database in order to search for a specific host
 
 It lets you export the data of the selected item into a **.csv** file (optional) and gives you the mean of the maximum, minimum and average values that **Zabbix** has stored on its' database. 
 
-Since this is the very first version of the script you need to manually replace in your readingdb.py your database's username and password, the default **username**:**password** is **root**:**1234**. We're planning on doing this in a smarter way soon :)
+You can search the host you're looking for by passing the option **--name**, but if you don't it will still prompt you for one.
+
+It will ask you for the database's user, password and address (defaults to: **'root'**, **'1234'**, **'localhost'** respectively). So far you can't connect to a remote database, but we'll work on that.
 
 Installation
 -------------------
@@ -27,5 +29,5 @@ You can install python dependencies using `pip install -r requirements.txt`
 ### To use it:
 
 ```bash
-python zabbixinfo.py "name of the host for which you wanna search the values"
+python zabbixinfo.py 
 ```
