@@ -1,7 +1,5 @@
-
 import click
 from readingdb import get_items, get_trends, search_host, percentil, rank, mean
-
 
 @click.command()
 @click.option('--name', prompt='What host are you searching for?',help='Host to look for.')
@@ -10,8 +8,7 @@ def hosts(name):
     host_list = search_host(name)
     
     while host_list == []:
-        #Check if the host exists
-    	name =click.prompt("The host doesn't exists,select a new one")
+        name =click.prompt("The host doesn't exists,select a new one")
         host_list = search_host(name)
     	
     hosts_ids = [e[0] for e in host_list]
