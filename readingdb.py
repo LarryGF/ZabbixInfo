@@ -1,13 +1,40 @@
+import click
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-# engine = create_engine('sqlite:///test.db', echo=False)
-engine = create_engine('mysql://root:1234@localhost/zabbix', echo=False)
-Base = automap_base()
-Base.prepare(engine, reflect=True)
-Session = sessionmaker(bind=engine, expire_on_commit=False)
-session = Session()
+#Prompts the user to select the databse's user and password
+user=click.prompt("\nType your database's user",default='root')
+password =click.prompt("Type your database's password",default='1234')
+dbaddr = click.prompt("Type your database's IP address",default='localhost')
+
+#This is the string that needs to be passed to the create_engine function (if anyone finds a better way to do this, feel free to edit)
+string='mysql://'+user+':'+password+'@'+dbaddr+'/zabbix' 
+
+#engine = create_engine('mysql://root:1234@localhost/zabbix', echo=False)
+engine = create_engine(string, echo=False) 
+
+#I know this is kinda basic, but it's a way to check if the user and password are correct
+noError = False
+count = int(0)
+while noError==False:
+    try:
+        Base = automap_base()
+        Base.prepare(engine, reflect=True)
+        Session = sessionmaker(bind=engine, expire_on_commit=False)
+        session = Session()
+        noError = True
+    except:
+        count =count+1
+
+        if count < 3:
+            user=click.prompt("\nYou typed the wrong user or password, retype user",default='root')
+            password =click.prompt("Retype password",default='1234')
+            dbaddr = click.prompt("Retype IP address",default='localhost')
+        else:
+            print("\nIt seems like you don't know your database very well,exiting for your own sake...\n")
+            exit()            
+
 
 # File = Base.classes.files
 # a = session.query(File).filter(File.filename.like('%snake%')).all()
