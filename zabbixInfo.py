@@ -10,6 +10,7 @@ def hosts(name):
     host_list = search_host(name)
     
     while host_list == []:
+        #Check if the host exists
     	name =click.prompt("The host doesn't exists,select a new one")
         host_list = search_host(name)
     	
