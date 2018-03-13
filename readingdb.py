@@ -2,10 +2,10 @@ import click
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-
+from sqlalchemy import and_
 #Prompts the user to select the databse's user and password
 user=click.prompt("\nType your database's user",default='root')
-password =click.prompt("Type your database's password",default='1234')
+password =click.prompt("Type your database's password",hide_input=True,default='1234')
 dbaddr = click.prompt("Type your database's IP address",default='localhost')
 
 #This is the string that needs to be passed to the create_engine function (if anyone finds a better way to do this, feel free to edit)
@@ -24,17 +24,18 @@ while noError==False:
         Session = sessionmaker(bind=engine, expire_on_commit=False)
         session = Session()
         noError = True
-    except:
+    except Exception as e:
         count =count+1
 
         if count < 3:
             user=click.prompt("\nYou typed the wrong user or password, retype user",default='root')
-            password =click.prompt("Retype password",default='1234')
+            password =click.prompt("Retype password",hide_input=True,default='1234')
             dbaddr = click.prompt("Retype IP address",default='localhost')
+            
         else:
             print("\nIt seems like you don't know your database very well,exiting for your own sake...\n")
             exit()            
-
+    pass
 
 # File = Base.classes.files
 # a = session.query(File).filter(File.filename.like('%snake%')).all()
@@ -71,11 +72,11 @@ def get_trends(itemid: int):
     """
     El método recive un itemid y devuelve
 
-    (trends.itemid, trends.value_min, trends.value_avg, trends.value_max)
+    (trends.itemid, trends.value_min, trends.value_avg, trends.value_max, trends.clock)
 
     donde trends. itemid == hostid
     """
-    return session.query(trends.itemid, trends.value_min, trends.value_avg, trends.value_max).filter(trends.itemid == itemid).all()
+    return session.query(trends.itemid, trends.value_min, trends.value_avg, trends.value_max, trends.clock).filter(trends.itemid == itemid).all()
 
 
 def percentil(scores):
@@ -96,6 +97,9 @@ def rank(scores, percentil_rank, value):
 
 
 def mean(numbers):
-    ans = []
     mean = float(sum(numbers)) / max(len(numbers), 1)
     return mean
+
+#Filter the trends where timestamp1 <= time <= timestamp2 & itemid==hostid
+def filter_time(timestamp1,timestamp2,itemid: int):
+    return session.query(trends.itemid, trends.value_min, trends.value_avg, trends.value_max, trends.clock).filter(and_(trends.itemid == itemid,trends.clock >= timestamp1,trends.clock <= timestamp2)).all()
