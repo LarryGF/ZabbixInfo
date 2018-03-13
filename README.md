@@ -13,6 +13,8 @@ You can search the host you're looking for by passing the option **--name**, but
 
 It will ask you for the database's user, password and address (defaults to: **'root'**, **'1234'**, **'localhost'** respectively). So far you can't connect to a remote database, but we'll work on that.
 
+You can now filter the results by date and time.
+
 Installation
 -------------------
 
