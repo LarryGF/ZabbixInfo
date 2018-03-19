@@ -1,0 +1,2 @@
+-When prompted to retype user and password of the database it doesn't accept the newly typed user and password 
+-The date and time (in zabbixinfo) needs to be typed as a whole number, change that
