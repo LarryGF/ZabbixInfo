@@ -1,4 +1,4 @@
 -It now hides the password for the database as it's being typed 
 -Now it shows the date and time where the samples where taken
 -It now lets you filter by date and time the samples adquired, it also affects the contents of the .csv file and the final results (mean and percentile)
--It's not necesary to manually add the '.csv' to the name of the file, it does it automatically 
+-It's not necesary to manually add the '.csv' to the name of the file, it does it automatically, and it saves the into a csv folder 
