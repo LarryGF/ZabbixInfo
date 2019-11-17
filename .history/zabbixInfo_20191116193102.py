@@ -1,7 +1,7 @@
 import click
 #to work with timestamps
 import datetime,time
-from readingdb import get_items, get_trends, search_host, percentil, rank, mean,filter_time,db_connect
+from .readingdb import get_items, get_trends, search_host, percentil, rank, mean,filter_time,db_connect
 
 @click.command()
 @click.option('--name', prompt='\nWhat host are you searching for?',help='Host to look for.')
@@ -16,7 +16,7 @@ def hosts(name):
 	hosts_ids = [e[0] for e in host_list]
 	select = ''
 
-	click.echo("\nHostid\tHostname")
+	click.echo('\nHostid\tHostname')
 	for host in host_list:
 		print('{}\t{}'.format(*host))
 	while not select.isnumeric() or int(select) not in hosts_ids:

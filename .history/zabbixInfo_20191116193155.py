@@ -16,7 +16,7 @@ def hosts(name):
 	hosts_ids = [e[0] for e in host_list]
 	select = ''
 
-	click.echo("\nHostid\tHostname")
+	click.echo('\nHostid\tHostname')
 	for host in host_list:
 		print('{}\t{}'.format(*host))
 	while not select.isnumeric() or int(select) not in hosts_ids:
