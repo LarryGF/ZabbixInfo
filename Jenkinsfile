@@ -6,7 +6,7 @@ pipeline {
         echo 'Hey there!'
       }
     }
-    stage('Install requirements') {
+    stage('Install Python requirements') {
       steps {
         pip install -r requirements.txt
       }
