@@ -6,5 +6,10 @@ pipeline {
         echo 'Hey there!'
       }
     }
+    stage('Install requirements') {
+      steps {
+        pip install -r requirements.txt
+      }
+    }
   }
 }
